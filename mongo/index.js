@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-var db = mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds061631.mlab.com:61631/heroku_bfz4n0w5');
+var stringdb = 'mongodb://<dbuser>:<dbpassword>@ds061631.mlab.com:61631/heroku_bfz4n0w5'
+var db = mongoose.connect(stringdb);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
