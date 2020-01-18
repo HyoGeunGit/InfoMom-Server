@@ -17,8 +17,8 @@ require('./mongo');
 require('./routes/auth')(app,Users,rndstring);
 require('./routes/service')(app,Health,Job,rndstring);
 
-app.listen(3001, ()=>{
-  console.log('Server On!');
-})
+app.listen(process.env.PORT || 8080, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 
 module.exports = app;
