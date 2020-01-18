@@ -1,4 +1,4 @@
-## BreedPop
+## InfoMOM
 
 #Restful Api
 
@@ -44,19 +44,23 @@
     HTTP 404 : { message : "User Not Found!"}
 
 
-* POST /addJob (Job과 Health가 있음 ex. /addJob, /addHealth)
+* POST /addBabySitter 
 
 > Params
 
-      name : { type : String } // 훈련명
+      name : { type : String } // 베이비시터 이름
 
-      percent : { type : String } // 훈련 진행도
+      percent : { type : String } // 신뢰도
 
-      count : {type : String } // 훈련 횟수
+      money : {type: String, required: true} // 금액 (시급)
       
-      userToken : {type: String} // 유저토큰
-      
-      ifFinish : {type :String} // 훈련 완료 유무
+      lat : {type: Number, required: true} // 위도
+
+      lng : {type: Number, required: true} // 경도
+    
+      subdata: {type: String, required: true} // 자기소개글
+  
+      isGujik : {type : String } // 구직 표시
 
 > Response
 
@@ -67,46 +71,55 @@
     HTTP 404 : { message : "Training Not Found!"}
 
 
-* POST /getJobList (Job과 Health가 있음 ex. /getJobList, /getHealthList)
 
 
-> Params
-
-    token : {type : String} //토큰
-
-    > Response
-
-    HTTP 200 : {
-         name : { type : String } // 훈련명
-
-         percent : { type : String } // 훈련 진행도
-
-         count : {type : String } // 훈련 횟수
-         
-         ifFinish : {type :String} // 훈련 완료 유무
-     } 
-
-    HTTP 404 : { message : "Training Not Found!"}
-
-
-
-* POST /allJobList (Job과 Health가 있음 ex. /allJobList, /allHealthList)
-
+* POST /addWiki
 
 > Params
 
-    userToken : {type : String} //유저 토큰
+      title : {type: String, required: true} // 글 제목
+
+      subdata : {type: String, required: true} // 글 내용
+
+      timeStamp : {type: String} // 타임스탬프
+
+      userName : {type : String, required: true} // 유저네임
 
  > Response
 
     HTTP 200 : {
-         name : { type : String } // 훈련명
+      token : {type: String} // 토큰
+     } 
 
-         percent : { type : String } // 훈련 진행도
+    HTTP 404 : { message : "User Training Not Found!"}
 
-         count : {type : String } // 훈련 횟수
-         
-         ifFinish : {type :String} // 훈련 완료 유무
+
+
+* POST /getallBabyList (/allWikiList)
+
+> Params
+        null
+ > Response
+
+    HTTP 200 : {
+
+      name : { type : String } // 베이비시터 이름
+
+      percent : { type : String } // 신뢰도
+
+      money : {type: String, required: true} // 금액 (시급)
+      
+      lat : {type: Number, required: true} // 위도
+
+      lng : {type: Number, required: true} // 경도
+    
+      subdata: {type: String, required: true} // 자기소개글
+  
+      userToken : {type : String} // 유저토큰
+  
+      isGujik : {type : String } // 구직 표시
+  
+      token : {type: String} // 혹시 모르니까 토큰 하나 더
      } 
 
     HTTP 404 : { message : "User Training Not Found!"}
